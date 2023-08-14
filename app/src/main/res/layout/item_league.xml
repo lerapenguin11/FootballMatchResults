@@ -2,14 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_league"
     android:layout_width="match_parent"
     android:background="@color/background"
     android:layout_marginBottom="30dp"
     android:layout_height="40dp">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/bt_open"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -30,7 +30,7 @@
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="15dp"
         android:fontFamily="@font/source_sans_pro_semibold"
         android:text="Ireland Premier Division"
         android:textColor="@color/white"
