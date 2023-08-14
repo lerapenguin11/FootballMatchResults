@@ -9,11 +9,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.footballmatchresults.R
-import com.example.footballmatchresults.business.models.league.LeagueModel
+import com.example.footballmatchresults.business.models.league.Data
 
 class LeagueAdapter() : RecyclerView.Adapter<LeagueAdapter.LeagueAdapterViewHolder>() {
 
-    private val leagueList =  mutableListOf<LeagueModel>()
+    private val leagueList =  mutableListOf<Data>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LeagueAdapterViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_league, parent, false)
@@ -24,15 +24,15 @@ class LeagueAdapter() : RecyclerView.Adapter<LeagueAdapter.LeagueAdapterViewHold
     override fun getItemCount(): Int = leagueList.size
 
     override fun onBindViewHolder(holder: LeagueAdapterViewHolder, position: Int) {
-        val resultLeagueList : LeagueModel = leagueList[position]
+        val resultLeagueList : Data = leagueList[position]
 
-        Glide.with(holder.itemView).load(resultLeagueList.data.leagueInfo.logo).into(holder.flag)
-        holder.name.text = resultLeagueList.data.leagueInfo.name
-        holder.shortName.text = resultLeagueList.data.leagueInfo.shortName
+        Glide.with(holder.itemView).load(resultLeagueList.logo).into(holder.flag)
+        holder.name.text = resultLeagueList.name
+        holder.shortName.text = resultLeagueList.shortName
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setItem(resultLeagueList : List<LeagueModel>){
+    fun setItem(resultLeagueList : List<Data>){
         this.leagueList.clear()
         this.leagueList.addAll(resultLeagueList)
         notifyDataSetChanged()
