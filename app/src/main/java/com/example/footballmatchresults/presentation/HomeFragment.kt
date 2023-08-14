@@ -1,4 +1,4 @@
-package com.example.footballmatchresults.presantation
+package com.example.footballmatchresults.presentation
 
 import android.os.Bundle
 import android.util.Log
@@ -11,10 +11,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.footballmatchresults.business.api.FootballApi
-import com.example.footballmatchresults.business.models.league.LeagueModel
 import com.example.footballmatchresults.business.repos.LeagueRepository
 import com.example.footballmatchresults.databinding.FragmentHomeBinding
-import com.example.footballmatchresults.presantation.adapter.LeagueAdapter
+import com.example.footballmatchresults.presentation.adapter.LeagueAdapter
 import com.example.footballmatchresults.viewModel.HomeViewModel
 import com.example.footballmatchresults.viewModel.MyViewModelFactory
 

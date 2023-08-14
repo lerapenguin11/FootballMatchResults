@@ -18,7 +18,6 @@ class HomeViewModel(private val repository: LeagueRepository) : ViewModel(){
     lateinit var disposable: Disposable
 
     fun getLeague() {
-        //observer subscribing to observable
         val response = repository.getAllMovies()
         response.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

@@ -1,4 +1,4 @@
-package com.example.footballmatchresults.presantation
+package com.example.footballmatchresults.presentation
 
 import android.annotation.SuppressLint
 import android.annotation.TargetApi

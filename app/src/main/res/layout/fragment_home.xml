@@ -9,7 +9,7 @@
     android:paddingStart="28dp"
     android:paddingEnd="28dp"
     android:paddingTop="10dp"
-    tools:context=".presantation.HomeFragment">
+    tools:context=".presentation.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"

@@ -1,4 +1,4 @@
-package com.example.footballmatchresults.presantation.adapter
+package com.example.footballmatchresults.presentation.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -28,7 +28,7 @@ class LeagueAdapter() : RecyclerView.Adapter<LeagueAdapter.LeagueAdapterViewHold
 
         Glide.with(holder.itemView).load(resultLeagueList.logo).into(holder.flag)
         holder.name.text = resultLeagueList.name
-        holder.shortName.text = resultLeagueList.shortName
+        holder.shortName.text = resultLeagueList.country
     }
 
     @SuppressLint("NotifyDataSetChanged")

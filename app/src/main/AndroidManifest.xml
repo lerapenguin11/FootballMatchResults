@@ -14,7 +14,7 @@
         android:theme="@style/Theme.FootballMatchResults"
         tools:targetApi="31">
         <activity
-            android:name=".presantation.MainActivity"
+            android:name=".presentation.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
