@@ -11,12 +11,16 @@ import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import com.example.footballmatchresults.APP_ACTIVITY
 import com.example.footballmatchresults.R
+import com.example.footballmatchresults.databinding.ActivityMainBinding
 import com.example.footballmatchresults.utilits.replaceFragment
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         APP_ACTIVITY = this
         setStatusBarGradiant(this)
     }

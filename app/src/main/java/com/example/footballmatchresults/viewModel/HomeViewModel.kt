@@ -37,6 +37,7 @@ class HomeViewModel(private val repository: LeagueRepository) : ViewModel(){
 
             override fun onNext(t: LeagueModel) {
                 leagueList.postValue(t.data)
+                println(t.code)
             }
 
             override fun onSubscribe(d: Disposable) {

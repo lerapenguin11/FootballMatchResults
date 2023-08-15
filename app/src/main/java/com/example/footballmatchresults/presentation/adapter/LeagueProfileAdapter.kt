@@ -9,8 +9,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footballmatchresults.R
 import com.example.footballmatchresults.business.models.leagueProfile.Data
+import com.example.footballmatchresults.presentation.adapter.listener.LeagueInformationListener
 
-class LeagueProfileAdapter : RecyclerView.Adapter<LeagueProfileAdapter.LeagueProfileViewHolder>() {
+class LeagueProfileAdapter(val leagueInfoListener : LeagueInformationListener) : RecyclerView.Adapter<LeagueProfileAdapter.LeagueProfileViewHolder>() {
 
     private val leagueList =  mutableListOf<Data>()
 
@@ -31,6 +32,10 @@ class LeagueProfileAdapter : RecyclerView.Adapter<LeagueProfileAdapter.LeaguePro
         holder.nameAway.text = resultLeagueList.awayName
         holder.resultHome.text = resultLeagueList.homeScore.toString()
         holder.resultAway.text = resultLeagueList.awayScore.toString()
+
+        holder.itemView.setOnClickListener{
+            leagueInfoListener.leagueInfo(resultLeagueList)
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
