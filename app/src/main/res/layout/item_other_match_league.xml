@@ -2,10 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/bg_result_match"
     android:layout_width="match_parent"
-    android:layout_marginStart="28dp"
-    android:layout_marginEnd="28dp"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
     android:layout_height="70dp"
     android:layout_marginBottom="20dp">
 
@@ -68,104 +69,128 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:padding="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/constraintLayout6"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout7"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/tv_name_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/source_sans_pro_semibold"
+            android:gravity="center"
+            android:text="Man United"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_result_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/source_sans_pro_semibold"
+            android:gravity="center"
+            android:text="2"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_name_home"
+            app:layout_constraintStart_toStartOf="@+id/tv_name_home" />
+
+        <TextView
+            android:id="@+id/tv_name_away"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/source_sans_pro_semibold"
+            android:gravity="center"
+            android:text="Chelsea FC"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_result_away"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/source_sans_pro_semibold"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_name_away"
+            app:layout_constraintStart_toStartOf="@+id/tv_name_away" />
+
+        <TextView
+            android:id="@+id/vs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/source_sans_pro_semibold"
+            android:gravity="center"
+            android:text="@string/vs"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_name_home"
+            app:layout_constraintEnd_toStartOf="@+id/tv_name_away"
+            app:layout_constraintStart_toEndOf="@+id/tv_name_home"
+            app:layout_constraintTop_toTopOf="@+id/tv_name_home" />
+
+        <TextView
+            android:id="@+id/tv_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/source_sans_pro_semibold"
+            android:gravity="center"
+            android:text="-"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_result_home"
+            app:layout_constraintEnd_toEndOf="@+id/vs"
+            app:layout_constraintStart_toStartOf="@+id/vs"
+            app:layout_constraintTop_toTopOf="@+id/tv_result_home" />
+
+
+        <!--<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/tv_name_away"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:text="Chelsea FC"
+                android:fontFamily="@font/source_sans_pro_semibold"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="12sp"/>
 
-                <TextView
-                    android:id="@+id/tv_name_home"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Man United"
-                    android:fontFamily="@font/source_sans_pro_semibold"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/tv_result_home"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="2"
-                    android:fontFamily="@font/source_sans_pro_semibold"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="15sp"/>
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/tv_result_away"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/vs"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/vs"
-                    android:fontFamily="@font/source_sans_pro_semibold"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"/>
-
-                <TextView
-                    android:id="@+id/tv_points"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="-"
-                    android:fontFamily="@font/source_sans_pro_semibold"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="15sp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_name_away"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Chelsea FC"
-                    android:fontFamily="@font/source_sans_pro_semibold"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"/>
-
-                <TextView
-                    android:id="@+id/tv_lives"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="1"
-                    android:fontFamily="@font/source_sans_pro_semibold"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="15sp"/>
-            </LinearLayout>
-
+                android:text="1"
+                android:fontFamily="@font/source_sans_pro_semibold"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="15sp"/>
         </LinearLayout>
+
+    </LinearLayout>-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

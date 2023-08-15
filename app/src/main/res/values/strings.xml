@@ -7,4 +7,15 @@
     <string name="intuition">Intuition</string>
     <string name="other_match">Other Match</string>
     <string name="vs">vs</string>
+    <string name="full_information">Full Information</string>
+    <string name="statistic_match">Statistic Match</string>
+    <string name="half_score">Half score</string>
+    <string name="red">Red card</string>
+    <string name="yellow_card">Yellow card</string>
+    <string name="corner">Corner</string>
+    <string name="rank">Rank</string>
+    <string name="additional_information">Additional information</string>
+    <string name="round">Round:</string>
+    <string name="location">Location:</string>
+    <string name="weather">Weather:</string>
 </resources>

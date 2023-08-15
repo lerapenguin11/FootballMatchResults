@@ -43,27 +43,15 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/order_match"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:fontFamily="@font/source_sans_pro_semibold"
-        android:layout_marginStart="40dp"
-        android:text="@string/other_match"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_league_result"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="28dp"
-        tools:listitem="@layout/item_other_match_league"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order_match" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
+        tools:listitem="@layout/item_other_match_league" />
 </androidx.constraintlayout.widget.ConstraintLayout>
