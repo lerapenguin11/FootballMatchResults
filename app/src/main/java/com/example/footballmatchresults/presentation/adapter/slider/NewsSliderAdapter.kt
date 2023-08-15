@@ -9,8 +9,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footballmatchresults.R
 import com.example.footballmatchresults.business.models.slide.NewsModel
+import com.example.footballmatchresults.presentation.adapter.listener.LeagueListener
 
-class NewsSliderAdapter() : RecyclerView.Adapter<NewsSliderAdapter.NewsSliderViewHolder>() {
+class NewsSliderAdapter(val newsListener : LeagueListener) : RecyclerView.Adapter<NewsSliderAdapter.NewsSliderViewHolder>() {
 
     private val newsList =  mutableListOf<NewsModel>()
 
@@ -28,6 +29,10 @@ class NewsSliderAdapter() : RecyclerView.Adapter<NewsSliderAdapter.NewsSliderVie
         holder.titleNews.text = resultNewsList.title
         holder.dateNews.text = resultNewsList.date
         holder.icon.setImageResource(R.drawable.def)
+
+        holder.itemView.setOnClickListener {
+            newsListener.newsList(resultNewsList)
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")

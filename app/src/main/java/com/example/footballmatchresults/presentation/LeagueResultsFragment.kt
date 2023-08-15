@@ -30,13 +30,16 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.footballmatchresults.business.models.slide.SoonMatchModel
 import com.example.footballmatchresults.business.repos.LeagueRepository
 import com.example.footballmatchresults.databinding.FragmentLeagueResultsBinding
+import com.example.footballmatchresults.presentation.adapter.listener.SoonMatchListener
 import com.example.footballmatchresults.presentation.adapter.slider.SoonMatchAdapter
 import com.example.footballmatchresults.utilits.replaceFragment
 import com.example.footballmatchresults.viewModel.HomeViewModel
 import com.example.footballmatchresults.viewModel.HomeViewModelFactory
 import kotlin.math.abs
 
-class LeagueResultsFragment(val id : String) : Fragment(), LeagueInformationListener {
+class LeagueResultsFragment(val id : String) : Fragment(),
+    LeagueInformationListener,
+    SoonMatchListener {
 
     private var _binding : FragmentLeagueResultsBinding? = null
     private val binding get() = _binding!!
@@ -44,7 +47,7 @@ class LeagueResultsFragment(val id : String) : Fragment(), LeagueInformationList
     private lateinit var viewModel : LeagueResultsViewModel
     private val retrofitService = FootballApi.getInstance()
     private val adapter = LeagueProfileAdapter(this)
-    private val adapterSlider = SoonMatchAdapter()
+    private val adapterSlider = SoonMatchAdapter(this)
     private lateinit var viewPager: ViewPager2
 
     override fun onCreateView(
@@ -181,5 +184,23 @@ class LeagueResultsFragment(val id : String) : Fragment(), LeagueInformationList
         info.setOnClickListener {
             Toast.makeText(context, R.string.league_result_dialog, Toast.LENGTH_LONG).show()
         }
+    }
+
+    override fun soonMatchList(list: SoonMatchModel) {
+        val dialog = Dialog(requireContext(), android.R.style.Theme_DeviceDefault_Light_NoActionBar_Fullscreen)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.full_screen_dialog_enter_points)
+        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        dialog.window?.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+
+        val date : TextView = dialog.findViewById(R.id.tv_date_enter_point)
+        val nameHome : TextView = dialog.findViewById(R.id.tv_name_home_point_enter)
+        val nameAway : TextView = dialog.findViewById(R.id.tv_name_away_point_enter)
+
+        date.text = list.date
+        nameHome.text = list.nameHome
+        nameAway.text = list.nameAway
+
+        dialog.show()
     }
 }

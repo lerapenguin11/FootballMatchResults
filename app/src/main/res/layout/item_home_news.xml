@@ -32,7 +32,7 @@
             android:fontFamily="@font/source_sans_pro_semibold"
             android:text="e.g. Western Paly Off"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/icon_def"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

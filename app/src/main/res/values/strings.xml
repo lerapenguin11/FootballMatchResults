@@ -22,4 +22,7 @@
     <string name="soon">It\'s coming soon</string>
     <string name="league_result_info">On this screen you can watch the past league matches, as well as test your intuition!</string>
     <string name="league_result_dialog">On this screen you can see the detailed statistics of the match</string>
+    <string name="rules">Rules</string>
+    <string name="intuition_points">Intuition points</string>
+    <string name="dash">-</string>
 </resources>

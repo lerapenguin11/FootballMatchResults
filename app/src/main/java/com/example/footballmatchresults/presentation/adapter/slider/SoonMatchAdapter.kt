@@ -8,8 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footballmatchresults.R
 import com.example.footballmatchresults.business.models.slide.SoonMatchModel
+import com.example.footballmatchresults.presentation.adapter.listener.SoonMatchListener
 
-class SoonMatchAdapter() : RecyclerView.Adapter<SoonMatchAdapter.SoonMatchViewHolder>() {
+class SoonMatchAdapter(val soonMatchListener: SoonMatchListener) : RecyclerView.Adapter<SoonMatchAdapter.SoonMatchViewHolder>() {
 
     private val matchList =  mutableListOf<SoonMatchModel>()
 
@@ -30,6 +31,10 @@ class SoonMatchAdapter() : RecyclerView.Adapter<SoonMatchAdapter.SoonMatchViewHo
         holder.nameAway.text = resultMatch.nameAway
         holder.resultHome.text = resultMatch.resultHome
         holder.resultAway.text = resultMatch.resultAway
+
+        holder.itemView.setOnClickListener {
+            soonMatchListener.soonMatchList(resultMatch)
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")

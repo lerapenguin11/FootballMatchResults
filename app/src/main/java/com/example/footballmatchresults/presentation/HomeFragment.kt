@@ -1,12 +1,13 @@
 package com.example.footballmatchresults.presentation
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
+import android.view.*
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -18,6 +19,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.footballmatchresults.R
 import com.example.footballmatchresults.business.api.FootballApi
 import com.example.footballmatchresults.business.models.league.Data
+import com.example.footballmatchresults.business.models.slide.NewsModel
 import com.example.footballmatchresults.business.repos.LeagueRepository
 import com.example.footballmatchresults.databinding.FragmentHomeBinding
 import com.example.footballmatchresults.presentation.adapter.LeagueAdapter
@@ -36,7 +38,7 @@ class HomeFragment : Fragment(), LeagueListener {
     private val retrofitService = FootballApi.getInstance()
     val adapter = LeagueAdapter(this)
     private lateinit var viewPager: ViewPager2
-    private val adapterSlider = NewsSliderAdapter()
+    private val adapterSlider = NewsSliderAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -88,6 +90,10 @@ class HomeFragment : Fragment(), LeagueListener {
         binding.btInfo.setOnClickListener {
             Toast.makeText(context, R.string.home_info, Toast.LENGTH_LONG).show()
         }
+
+        binding.navRules.setOnClickListener{
+
+        }
     }
 
     private fun setAdapterLeague() {
@@ -121,5 +127,29 @@ class HomeFragment : Fragment(), LeagueListener {
 
     override fun leagueList(list: Data) {
         replaceFragment(LeagueResultsFragment(list.leagueId))
+    }
+
+    @SuppressLint("CutPasteId")
+    override fun newsList(data: NewsModel) {
+        val dialog = Dialog(requireContext(), android.R.style.Theme_DeviceDefault_Light_NoActionBar_Fullscreen)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.full_screen_dialog_news)
+        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        dialog.window?.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+
+        val title : TextView = dialog.findViewById(R.id.tv_title_dialog_news)
+        val date : TextView = dialog.findViewById(R.id.tv_title_dialog_news)
+        val text : TextView = dialog.findViewById(R.id.tv_text_dialog_news)
+        val btArrow : ImageView = dialog.findViewById(R.id.bt_close_dialog_news)
+
+        title.text = data.title
+        date.text = data.date
+        text.text = data.text
+
+        dialog.show()
+
+        btArrow.setOnClickListener {
+            dialog.cancel()
+        }
     }
 }
