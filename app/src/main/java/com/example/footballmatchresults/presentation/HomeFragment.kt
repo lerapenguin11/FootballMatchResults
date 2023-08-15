@@ -21,7 +21,7 @@ import com.example.footballmatchresults.business.models.league.Data
 import com.example.footballmatchresults.business.repos.LeagueRepository
 import com.example.footballmatchresults.databinding.FragmentHomeBinding
 import com.example.footballmatchresults.presentation.adapter.LeagueAdapter
-import com.example.footballmatchresults.presentation.adapter.NewsSliderAdapter
+import com.example.footballmatchresults.presentation.adapter.slider.NewsSliderAdapter
 import com.example.footballmatchresults.presentation.adapter.listener.LeagueListener
 import com.example.footballmatchresults.utilits.replaceFragment
 import com.example.footballmatchresults.viewModel.HomeViewModel
@@ -50,7 +50,7 @@ class HomeFragment : Fragment(), LeagueListener {
     override fun onStart() {
         super.onStart()
         setViewPager()
-        //setAdapterLeague()
+        setAdapterLeague()
         onClick()
     }
 

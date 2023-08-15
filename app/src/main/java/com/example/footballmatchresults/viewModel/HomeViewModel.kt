@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.footballmatchresults.business.models.NewsModel
+import com.example.footballmatchresults.business.models.slide.NewsModel
 import com.example.footballmatchresults.business.models.league.Data
 import com.example.footballmatchresults.business.models.league.LeagueModel
 import com.example.footballmatchresults.business.repos.LeagueRepository

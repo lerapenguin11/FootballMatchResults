@@ -16,7 +16,7 @@
 
         <ImageView
             android:id="@+id/icon_def"
-            android:layout_width="220dp"
+            android:layout_width="169dp"
             android:layout_height="169dp"
             android:src="@drawable/def"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -36,18 +36,6 @@
             app:layout_constraintEnd_toStartOf="@+id/icon_def"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <!--<TextView
-            android:id="@+id/tv_leagueName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/source_sans_pro_semibold"
-            android:text="Brazil Serie A"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@+id/tv_title_news"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title_news" />-->
 
         <TextView
             android:id="@+id/tv_date_news"

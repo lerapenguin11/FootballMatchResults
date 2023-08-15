@@ -19,4 +19,7 @@
     <string name="location">Location:</string>
     <string name="weather">Weather:</string>
     <string name="home_info">On this screen you can watch football events and leagues</string>
+    <string name="soon">It\'s coming soon</string>
+    <string name="league_result_info">On this screen you can watch the past league matches, as well as test your intuition!</string>
+    <string name="league_result_dialog">On this screen you can see the detailed statistics of the match</string>
 </resources>

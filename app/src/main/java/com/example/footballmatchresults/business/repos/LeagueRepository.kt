@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.footballmatchresults.business.api.FootballApi
 import com.example.footballmatchresults.business.api.FootballApi.Companion.retrofitService
-import com.example.footballmatchresults.business.models.Constants
-import com.example.footballmatchresults.business.models.NewsModel
+import com.example.footballmatchresults.business.models.slide.Constants
+import com.example.footballmatchresults.business.models.slide.NewsModel
 
 class LeagueRepository(private val api: FootballApi) {
 

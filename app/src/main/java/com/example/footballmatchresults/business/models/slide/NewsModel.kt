@@ -1,4 +1,4 @@
-package com.example.footballmatchresults.business.models
+package com.example.footballmatchresults.business.models.slide
 
 data class NewsModel(
     val id : Int,

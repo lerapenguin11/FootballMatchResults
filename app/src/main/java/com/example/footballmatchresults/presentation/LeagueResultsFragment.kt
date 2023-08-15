@@ -1,5 +1,6 @@
 package com.example.footballmatchresults.presentation
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
@@ -20,8 +21,20 @@ import com.example.footballmatchresults.presentation.adapter.listener.LeagueInfo
 import com.example.footballmatchresults.viewModel.LeagueResultsViewModel
 import com.example.footballmatchresults.viewModel.LeagueResultViewModelFactory
 import android.view.*
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.CompositePageTransformer
+import androidx.viewpager2.widget.MarginPageTransformer
+import androidx.viewpager2.widget.ViewPager2
+import com.example.footballmatchresults.business.models.slide.SoonMatchModel
+import com.example.footballmatchresults.business.repos.LeagueRepository
 import com.example.footballmatchresults.databinding.FragmentLeagueResultsBinding
+import com.example.footballmatchresults.presentation.adapter.slider.SoonMatchAdapter
+import com.example.footballmatchresults.utilits.replaceFragment
+import com.example.footballmatchresults.viewModel.HomeViewModel
+import com.example.footballmatchresults.viewModel.HomeViewModelFactory
+import kotlin.math.abs
 
 class LeagueResultsFragment(val id : String) : Fragment(), LeagueInformationListener {
 
@@ -31,6 +44,8 @@ class LeagueResultsFragment(val id : String) : Fragment(), LeagueInformationList
     private lateinit var viewModel : LeagueResultsViewModel
     private val retrofitService = FootballApi.getInstance()
     private val adapter = LeagueProfileAdapter(this)
+    private val adapterSlider = SoonMatchAdapter()
+    private lateinit var viewPager: ViewPager2
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +59,47 @@ class LeagueResultsFragment(val id : String) : Fragment(), LeagueInformationList
     override fun onResume() {
         super.onResume()
         setAdapterLeagueProfile()
+        setViewPager()
+        onClick()
+    }
+
+    private fun onClick() {
+        binding.btInfoMatch.setOnClickListener {
+            Toast.makeText(context, R.string.league_result_info, Toast.LENGTH_LONG).show()
+        }
+
+        binding.btArrow.setOnClickListener { replaceFragment(HomeFragment()) }
+    }
+
+    @SuppressLint("UseRequireInsteadOfGet")
+    private fun setViewPager() {
+        viewModel =
+            ViewModelProvider(this, LeagueResultViewModelFactory(LeagueProfileRepository(retrofitService))).get(
+                LeagueResultsViewModel::class.java
+            )
+
+        viewModel.getSoonMatchSlider().observe(requireActivity()){
+            adapterSlider.setItem(it)
+        }
+
+        viewPager = view!!.findViewById(R.id.result_view_pager)
+        viewPager.adapter = adapterSlider
+        viewPager.clipChildren = false
+        viewPager.clipToPadding = false
+        viewPager.offscreenPageLimit = 3
+        viewPager.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+
+        val compositePageTransformer = CompositePageTransformer()
+        compositePageTransformer.addTransformer(MarginPageTransformer(40))
+        compositePageTransformer.addTransformer(object : ViewPager2.PageTransformer{
+            override fun transformPage(page: View, position: Float) {
+                val r = 1 - abs(position)
+
+                page.scaleY = 0.05f + r + 0.15f
+            }
+        })
+
+        viewPager.setPageTransformer(compositePageTransformer)
     }
 
     private fun setAdapterLeagueProfile() {
@@ -97,6 +153,9 @@ class LeagueResultsFragment(val id : String) : Fragment(), LeagueInformationList
         val weather : TextView = dialog.findViewById(R.id.tv_weather)
         val temperature : TextView = dialog.findViewById(R.id.tv_temperature)
 
+        val btBack : ImageView = dialog.findViewById(R.id.bt_arrow_back)
+        val info : ImageView = dialog.findViewById(R.id.bt_info_dialog)
+
         resultHome.text = data.homeScore.toString()
         resultAway.text = data.awayScore.toString()
         nameHome.text = data.homeName
@@ -117,5 +176,10 @@ class LeagueResultsFragment(val id : String) : Fragment(), LeagueInformationList
         temperature.text = data.temperature
         dialog.show()
 
+        btBack.setOnClickListener { dialog.cancel() }
+
+        info.setOnClickListener {
+            Toast.makeText(context, R.string.league_result_dialog, Toast.LENGTH_LONG).show()
+        }
     }
 }

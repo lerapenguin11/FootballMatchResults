@@ -1,10 +1,13 @@
 package com.example.footballmatchresults.viewModel
 
 import android.annotation.SuppressLint
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.footballmatchresults.business.models.leagueProfile.Data
 import com.example.footballmatchresults.business.models.leagueProfile.LeagueProfileModel
+import com.example.footballmatchresults.business.models.slide.NewsModel
+import com.example.footballmatchresults.business.models.slide.SoonMatchModel
 import com.example.footballmatchresults.business.repos.LeagueProfileRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observer
@@ -23,6 +26,15 @@ class LeagueResultsViewModel(private val repository: LeagueProfileRepository) : 
         response.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(getLeaguesResultListObserver())
+    }
+
+    fun getSoonMatchSlider() : LiveData<MutableList<SoonMatchModel>> {
+        val mutableData = MutableLiveData<MutableList<SoonMatchModel>>()
+        repository.getSoonMachListFootball().observeForever {list ->
+            mutableData.value = list
+        }
+
+        return mutableData
     }
 
     private fun getLeaguesResultListObserver(): Observer<LeagueProfileModel> {

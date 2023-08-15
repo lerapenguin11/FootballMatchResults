@@ -1,4 +1,4 @@
-package com.example.footballmatchresults.presentation.adapter
+package com.example.footballmatchresults.presentation.adapter.slider
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -8,8 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footballmatchresults.R
-import com.example.footballmatchresults.business.models.NewsModel
-import com.example.footballmatchresults.business.models.leagueProfile.Data
+import com.example.footballmatchresults.business.models.slide.NewsModel
 
 class NewsSliderAdapter() : RecyclerView.Adapter<NewsSliderAdapter.NewsSliderViewHolder>() {
 
