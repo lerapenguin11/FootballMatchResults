@@ -1,8 +1,10 @@
 package com.example.footballmatchresults.viewModel
 
 import android.annotation.SuppressLint
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.footballmatchresults.business.models.NewsModel
 import com.example.footballmatchresults.business.models.league.Data
 import com.example.footballmatchresults.business.models.league.LeagueModel
 import com.example.footballmatchresults.business.repos.LeagueRepository
@@ -22,6 +24,15 @@ class HomeViewModel(private val repository: LeagueRepository) : ViewModel(){
         response.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(getLeaguesListObserver())
+    }
+
+    fun getNewsSlider() : LiveData<MutableList<NewsModel>> {
+        val mutableData = MutableLiveData<MutableList<NewsModel>>()
+        repository.getNewsListFootball().observeForever {list ->
+            mutableData.value = list
+        }
+
+        return mutableData
     }
 
     private fun getLeaguesListObserver(): Observer<LeagueModel> {
