@@ -11,19 +11,22 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.footballmatchresults.business.api.FootballApi
+import com.example.footballmatchresults.business.models.league.Data
 import com.example.footballmatchresults.business.repos.LeagueRepository
 import com.example.footballmatchresults.databinding.FragmentHomeBinding
 import com.example.footballmatchresults.presentation.adapter.LeagueAdapter
+import com.example.footballmatchresults.presentation.adapter.listener.LeagueListener
+import com.example.footballmatchresults.utilits.replaceFragment
 import com.example.footballmatchresults.viewModel.HomeViewModel
-import com.example.footballmatchresults.viewModel.MyViewModelFactory
+import com.example.footballmatchresults.viewModel.HomeViewModelFactory
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), LeagueListener {
     private var _binding : FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
     lateinit var viewModel: HomeViewModel
     private val retrofitService = FootballApi.getInstance()
-    val adapter = LeagueAdapter()
+    val adapter = LeagueAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +44,7 @@ class HomeFragment : Fragment() {
 
     private fun setAdapterLeague() {
         viewModel =
-            ViewModelProvider(this, MyViewModelFactory(LeagueRepository(retrofitService))).get(
+            ViewModelProvider(this, HomeViewModelFactory(LeagueRepository(retrofitService))).get(
                 HomeViewModel::class.java
             )
         binding.listLeague.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
@@ -66,5 +69,9 @@ class HomeFragment : Fragment() {
     override fun onDestroy() {
         viewModel.disposable.dispose()
         super.onDestroy()
+    }
+
+    override fun leagueList(list: Data) {
+        replaceFragment(LeagueResultsFragment(list.leagueId))
     }
 }

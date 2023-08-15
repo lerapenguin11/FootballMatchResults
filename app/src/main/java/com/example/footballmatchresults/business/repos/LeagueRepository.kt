@@ -5,5 +5,5 @@ import com.example.footballmatchresults.business.api.FootballApi.Companion.retro
 
 class LeagueRepository(private val api: FootballApi) {
 
-    fun getAllMovies() = retrofitService!!.getLeague()
+    fun getReloadDataLeague() = retrofitService!!.getLeague()
 }

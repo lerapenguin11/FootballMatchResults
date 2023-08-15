@@ -10,8 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.footballmatchresults.R
 import com.example.footballmatchresults.business.models.league.Data
+import com.example.footballmatchresults.presentation.adapter.listener.LeagueListener
 
-class LeagueAdapter() : RecyclerView.Adapter<LeagueAdapter.LeagueAdapterViewHolder>() {
+class LeagueAdapter(val leagueListener: LeagueListener) : RecyclerView.Adapter<LeagueAdapter.LeagueAdapterViewHolder>() {
 
     private val leagueList =  mutableListOf<Data>()
 
@@ -29,6 +30,10 @@ class LeagueAdapter() : RecyclerView.Adapter<LeagueAdapter.LeagueAdapterViewHold
         Glide.with(holder.itemView).load(resultLeagueList.logo).into(holder.flag)
         holder.name.text = resultLeagueList.name
         holder.shortName.text = resultLeagueList.country
+
+        holder.itemView.setOnClickListener {
+            leagueListener.leagueList(resultLeagueList)
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
