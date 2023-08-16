@@ -8,11 +8,12 @@ import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.footballmatchresults.R
+import com.example.footballmatchresults.business.db.Points
 import com.example.footballmatchresults.business.models.slide.PointModel
 
 class PointIntuitionAdapter() : RecyclerView.Adapter<PointIntuitionAdapter.PointIntuitionViewHolder>() {
 
-    private val pointList = mutableListOf<PointModel>()
+    private val pointList = mutableListOf<Points>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PointIntuitionViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_point, parent, false)
@@ -30,7 +31,7 @@ class PointIntuitionAdapter() : RecyclerView.Adapter<PointIntuitionAdapter.Point
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setItem(resultLeagueList: List<PointModel>){
+    fun setItem(resultLeagueList: List<Points>){
         //this.pointList.clear()
         this.pointList.addAll(resultLeagueList)
         notifyDataSetChanged()

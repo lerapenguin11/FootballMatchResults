@@ -7,9 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.footballmatchresults.R
 import com.example.footballmatchresults.business.api.FootballApi.Companion.retrofitService
+import com.example.footballmatchresults.business.db.DatabaseHelper
+import com.example.footballmatchresults.business.db.PointsDao
 import com.example.footballmatchresults.business.models.slide.PointModel
 import com.example.footballmatchresults.business.repos.LeagueProfileRepository
 import com.example.footballmatchresults.databinding.FragmentIntuitionBinding
@@ -17,11 +20,13 @@ import com.example.footballmatchresults.presentation.adapter.PointIntuitionAdapt
 import com.example.footballmatchresults.utilits.replaceFragment
 import com.example.footballmatchresults.viewModel.LeagueResultViewModelFactory
 import com.example.footballmatchresults.viewModel.LeagueResultsViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class IntuitionHistoryFragment(val pointList : MutableList<PointModel>,
-                               val id : String) : Fragment() {
+class IntuitionHistoryFragment() : Fragment() {
     private var _binding : FragmentIntuitionBinding? = null
     private val binding get() = _binding!!
+    private lateinit var pointsDao: PointsDao
 
     private val adapterPoint  = PointIntuitionAdapter()
     private lateinit var viewModel : LeagueResultsViewModel
@@ -39,6 +44,8 @@ class IntuitionHistoryFragment(val pointList : MutableList<PointModel>,
                 LeagueResultsViewModel::class.java
             )
 
+        DatabaseHelper.init(requireActivity())
+
         return binding.root
     }
 
@@ -50,7 +57,7 @@ class IntuitionHistoryFragment(val pointList : MutableList<PointModel>,
 
     private fun onClick() {
         binding.btArrow.setOnClickListener {
-
+            replaceFragment(HomeFragment())
         }
 
         binding.btInfoMatch.setOnClickListener {
@@ -59,9 +66,13 @@ class IntuitionHistoryFragment(val pointList : MutableList<PointModel>,
     }
 
     fun addText() {
+
         binding.rvIntuitionHistory.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.rvIntuitionHistory.adapter = adapterPoint
-        adapterPoint.setItem(pointList)
-        println(pointList)
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            val notes = DatabaseHelper.getAllNotes()
+            adapterPoint.setItem(notes)
+        }
     }
 }
