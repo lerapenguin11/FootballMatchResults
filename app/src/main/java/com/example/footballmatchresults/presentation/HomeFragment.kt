@@ -107,12 +107,6 @@ class HomeFragment() : Fragment(), LeagueListener {
             replaceFragment(RulesFragment())
         }
 
-        /*binding.navIntuition.setOnClickListener {
-            pointList = viewModelLeague.pointsList
-
-            replaceFragment(IntuitionHistoryFragment(pointList = pointList))
-        }*/
-        //TODO УБРАТЬ
         binding.navHome.setOnClickListener { replaceFragment(LeagueResultsFragment("")) }
     }
 

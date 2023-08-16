@@ -26,11 +26,14 @@ import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.example.footballmatchresults.PREFS_KEY
+import com.example.footballmatchresults.business.db.DatabaseHelper
+import com.example.footballmatchresults.business.db.Points
 import com.example.footballmatchresults.business.models.slide.PointModel
 import com.example.footballmatchresults.business.models.slide.SoonMatchModel
 import com.example.footballmatchresults.databinding.FragmentLeagueResultsBinding
@@ -42,6 +45,8 @@ import com.example.footballmatchresults.viewModel.PointViewModel
 import com.google.gson.Gson
 import kotlin.math.abs
 import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.lang.reflect.Type
 
 class LeagueResultsFragment(val id : String) : Fragment(),
@@ -56,12 +61,17 @@ class LeagueResultsFragment(val id : String) : Fragment(),
     private val adapter = LeagueProfileAdapter(this)
     private val adapterSlider = SoonMatchAdapter(this)
     private lateinit var viewPager: ViewPager2
+    private var homeName = ""
+    private var awayName = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentLeagueResultsBinding.inflate(inflater, container, false)
+
+        DatabaseHelper.init(requireActivity())
+
 
         return binding.root
     }
@@ -214,18 +224,28 @@ class LeagueResultsFragment(val id : String) : Fragment(),
         nameHome.text = list.nameHome
         nameAway.text = list.nameAway
 
-        save.setOnClickListener {
-            var text1 = enterHomeResult.text.toString()
-            var text2 : String= enterAwayResult.text.toString()
-            var pointHome = PointModel(text1, text2)
-            viewModel.pointsList.add(pointHome)
-            val list = viewModel.pointsList
 
-            Toast.makeText(context, text1, Toast.LENGTH_SHORT).show()
-            replaceFragment(IntuitionHistoryFragment(list, id))
-            dialog.cancel()
+        homeName = list.nameHome
+        awayName = list.nameAway
+
+
+        save.setOnClickListener {
+            val pointHome = enterHomeResult.text.toString()
+            val pointAway = enterAwayResult.text.toString()
+
+            if(pointHome.isNotEmpty() && pointAway.isNotEmpty()){
+                val point = Points(pointHome = pointHome, pointAway = pointAway, nameAway = awayName, nameHome = homeName)
+                lifecycleScope.launch(Dispatchers.IO) {
+                    // запросы в базу, к примеру:
+                    DatabaseHelper.insert(point)
+                    replaceFragment(IntuitionHistoryFragment())
+                    dialog.cancel()
+                }
+            }
         }
 
-
+        history.setOnClickListener {
+            replaceFragment(IntuitionHistoryFragment())
+        }
     }
 }
