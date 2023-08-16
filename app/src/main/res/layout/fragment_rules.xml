@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".presentation.LeagueResultsFragment">
+    tools:context=".presentation.RulesFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"
@@ -22,9 +22,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/source_sans_pro_semibold"
-            android:text="UEFA Champions League"
+            android:text="@string/rules"
             android:textColor="@color/white"
-            android:textSize="24sp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,27 +51,24 @@
             app:srcCompat="@drawable/ic_information" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/result_view_pager"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:foregroundGravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
         android:paddingStart="28dp"
-        android:paddingEnd="28dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/rules_text"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:src="@drawable/card"
+        android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_league_result"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/result_view_pager"
-        tools:listitem="@layout/item_other_match_league" />
 </androidx.constraintlayout.widget.ConstraintLayout>

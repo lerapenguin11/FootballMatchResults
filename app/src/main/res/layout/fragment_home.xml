@@ -130,7 +130,7 @@
                     android:textSize="18sp" />
             </LinearLayout>
 
-            <LinearLayout
+            <!--<LinearLayout
                 android:id="@+id/nav_intuition"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -156,7 +156,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
-            </LinearLayout>
+            </LinearLayout>-->
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

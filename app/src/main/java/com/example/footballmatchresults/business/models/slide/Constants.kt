@@ -12,10 +12,16 @@ object Constants {
                     "The Belgian played 29 games in the Premier League last season and scored one goal. Detailed statistics of the 19-year-old football player can be found here.")
         newsList.add(new1)
 
-        val new2 = NewsModel(1,"The history of football", "14 august", "football")
+        val new2 = NewsModel(1,"The history of football", "14 august, 2023", "Romeo Lavia will be introduced as a Chelsea rookie this week.\n" +
+                "According to an insider Fabrizio Romano, the Blues will pay Southampton 53 million pounds, another 5 million are provided as bonuses.\n" +
+                "In the coming days, the midfielder will undergo a medical examination.\n" +
+                "The Belgian played 29 games in the Premier League last season and scored one goal. Detailed statistics of the 19-year-old football player can be found here.")
         newsList.add(new2)
 
-        val new3 = NewsModel(2,"National teams", "13 august",  "football")
+        val new3 = NewsModel(2,"National teams", "13 august, 2023",  "Romeo Lavia will be introduced as a Chelsea rookie this week.\n" +
+                "According to an insider Fabrizio Romano, the Blues will pay Southampton 53 million pounds, another 5 million are provided as bonuses.\n" +
+                "In the coming days, the midfielder will undergo a medical examination.\n" +
+                "The Belgian played 29 games in the Premier League last season and scored one goal. Detailed statistics of the 19-year-old football player can be found here.")
         newsList.add(new3)
 
         return newsList

@@ -24,5 +24,9 @@
     <string name="league_result_dialog">On this screen you can see the detailed statistics of the match</string>
     <string name="rules">Rules</string>
     <string name="intuition_points">Intuition points</string>
+    <string name="info_rules">Read the rules</string>
     <string name="dash">-</string>
+    <string name="rules_text">You have a unique chance to test your logic and intuition, and maybe your knowledge! Choose a match and try to guess the outcome. If you can\'t choose a match by yourself, our great random function does it for you!</string>
+    <string name="point_history">Point history</string>
+    <string name="info_point">The history of your attempts</string>
 </resources>

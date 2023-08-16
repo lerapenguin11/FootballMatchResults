@@ -1,6 +1,7 @@
 package com.example.footballmatchresults.viewModel
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -43,12 +44,15 @@ class HomeViewModel(private val repository: LeagueRepository) : ViewModel(){
 
             @SuppressLint("NullSafeMutableLiveData")
             override fun onError(e: Throwable) {
-                leagueList.postValue(null)
+                //leagueList.postValue(null)
+                println("ОШИБКА: " + e.toString())
+                Log.d("ERROR_HOME", e.toString(), e)
             }
 
             override fun onNext(t: LeagueModel) {
                 leagueList.postValue(t.data)
-                println(t.code)
+                println(t.message)
+
             }
 
             override fun onSubscribe(d: Disposable) {

@@ -13,11 +13,10 @@ import retrofit2.http.Query
 interface FootballApi {
 
     //Списоок лиг
-    //@Headers("X-API-KEY: tKdl5IqZVI5gT95U", "Content-Type: application/json")
-    @GET("league?api_key=tKdl5IqZVI5gT95U")
+    @GET("league?api_key=dDy9kCrJg2S3oUQ5")
     fun getLeague() : Observable<LeagueModel>
 
-    @GET("schedule?api_key=tKdl5IqZVI5gT95U")
+    @GET("schedule?api_key=dDy9kCrJg2S3oUQ5")
     fun getLeagueResult(
         @Query("leagueId") leagueId : String
     ) : Observable<LeagueProfileModel>

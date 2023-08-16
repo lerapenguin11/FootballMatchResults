@@ -20,6 +20,8 @@ import com.example.footballmatchresults.R
 import com.example.footballmatchresults.business.api.FootballApi
 import com.example.footballmatchresults.business.models.league.Data
 import com.example.footballmatchresults.business.models.slide.NewsModel
+import com.example.footballmatchresults.business.models.slide.PointModel
+import com.example.footballmatchresults.business.repos.LeagueProfileRepository
 import com.example.footballmatchresults.business.repos.LeagueRepository
 import com.example.footballmatchresults.databinding.FragmentHomeBinding
 import com.example.footballmatchresults.presentation.adapter.LeagueAdapter
@@ -28,9 +30,11 @@ import com.example.footballmatchresults.presentation.adapter.listener.LeagueList
 import com.example.footballmatchresults.utilits.replaceFragment
 import com.example.footballmatchresults.viewModel.HomeViewModel
 import com.example.footballmatchresults.viewModel.HomeViewModelFactory
+import com.example.footballmatchresults.viewModel.LeagueResultViewModelFactory
+import com.example.footballmatchresults.viewModel.LeagueResultsViewModel
 import kotlin.math.abs
 
-class HomeFragment : Fragment(), LeagueListener {
+class HomeFragment() : Fragment(), LeagueListener {
     private var _binding : FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -39,12 +43,20 @@ class HomeFragment : Fragment(), LeagueListener {
     val adapter = LeagueAdapter(this)
     private lateinit var viewPager: ViewPager2
     private val adapterSlider = NewsSliderAdapter(this)
+    private lateinit var viewModelLeague : LeagueResultsViewModel
+    lateinit var pointList : MutableList<PointModel>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        viewModelLeague =
+            ViewModelProvider(this, LeagueResultViewModelFactory(LeagueProfileRepository(retrofitService))).get(
+                LeagueResultsViewModel::class.java
+            )
+
 
         return binding.root
     }
@@ -92,8 +104,16 @@ class HomeFragment : Fragment(), LeagueListener {
         }
 
         binding.navRules.setOnClickListener{
-
+            replaceFragment(RulesFragment())
         }
+
+        /*binding.navIntuition.setOnClickListener {
+            pointList = viewModelLeague.pointsList
+
+            replaceFragment(IntuitionHistoryFragment(pointList = pointList))
+        }*/
+        //TODO УБРАТЬ
+        binding.navHome.setOnClickListener { replaceFragment(LeagueResultsFragment("")) }
     }
 
     private fun setAdapterLeague() {
@@ -138,7 +158,7 @@ class HomeFragment : Fragment(), LeagueListener {
         dialog.window?.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         val title : TextView = dialog.findViewById(R.id.tv_title_dialog_news)
-        val date : TextView = dialog.findViewById(R.id.tv_title_dialog_news)
+        val date : TextView = dialog.findViewById(R.id.tv_date_dialog_news)
         val text : TextView = dialog.findViewById(R.id.tv_text_dialog_news)
         val btArrow : ImageView = dialog.findViewById(R.id.bt_close_dialog_news)
 

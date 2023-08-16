@@ -2,6 +2,8 @@ package com.example.footballmatchresults.presentation
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -23,19 +25,24 @@ import com.example.footballmatchresults.viewModel.LeagueResultViewModelFactory
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.example.footballmatchresults.PREFS_KEY
+import com.example.footballmatchresults.business.models.slide.PointModel
 import com.example.footballmatchresults.business.models.slide.SoonMatchModel
-import com.example.footballmatchresults.business.repos.LeagueRepository
 import com.example.footballmatchresults.databinding.FragmentLeagueResultsBinding
+import com.example.footballmatchresults.presentation.adapter.PointIntuitionAdapter
 import com.example.footballmatchresults.presentation.adapter.listener.SoonMatchListener
 import com.example.footballmatchresults.presentation.adapter.slider.SoonMatchAdapter
 import com.example.footballmatchresults.utilits.replaceFragment
-import com.example.footballmatchresults.viewModel.HomeViewModel
-import com.example.footballmatchresults.viewModel.HomeViewModelFactory
+import com.example.footballmatchresults.viewModel.PointViewModel
+import com.google.gson.Gson
 import kotlin.math.abs
+import com.google.gson.reflect.TypeToken
+import java.lang.reflect.Type
 
 class LeagueResultsFragment(val id : String) : Fragment(),
     LeagueInformationListener,
@@ -196,11 +203,29 @@ class LeagueResultsFragment(val id : String) : Fragment(),
         val date : TextView = dialog.findViewById(R.id.tv_date_enter_point)
         val nameHome : TextView = dialog.findViewById(R.id.tv_name_home_point_enter)
         val nameAway : TextView = dialog.findViewById(R.id.tv_name_away_point_enter)
+        val enterHomeResult : TextView = dialog.findViewById(R.id.et_enter_point_home)
+        val enterAwayResult : TextView = dialog.findViewById(R.id.et_enter_point_away)
+        val save : ConstraintLayout = dialog.findViewById(R.id.bt_save)
+        val history : ConstraintLayout = dialog.findViewById(R.id.bt_history)
+
+        dialog.show()
 
         date.text = list.date
         nameHome.text = list.nameHome
         nameAway.text = list.nameAway
 
-        dialog.show()
+        save.setOnClickListener {
+            var text1 = enterHomeResult.text.toString()
+            var text2 : String= enterAwayResult.text.toString()
+            var pointHome = PointModel(text1, text2)
+            viewModel.pointsList.add(pointHome)
+            val list = viewModel.pointsList
+
+            Toast.makeText(context, text1, Toast.LENGTH_SHORT).show()
+            replaceFragment(IntuitionHistoryFragment(list, id))
+            dialog.cancel()
+        }
+
+
     }
 }
