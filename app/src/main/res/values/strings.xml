@@ -29,4 +29,13 @@
     <string name="rules_text">You have a unique chance to test your logic and intuition, and maybe your knowledge! Choose a match and try to guess the outcome. If you can\'t choose a match by yourself, our great random function does it for you!</string>
     <string name="point_history">Point history</string>
     <string name="info_point">The history of your attempts</string>
+    <string name="title_activity_on_boarding_football">OnBoardingFootballActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="onBoarding_thirst">Welcome to the app Football Match Result!!!</string>
+    <string name="finish">Finish</string>
+    <string name="onBoarding_second">In the application, you can view logs, past matches and check your intuition. Also, you will always be up to date with the latest football news.</string>
 </resources>

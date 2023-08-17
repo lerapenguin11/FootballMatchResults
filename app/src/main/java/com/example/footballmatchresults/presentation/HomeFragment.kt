@@ -106,8 +106,6 @@ class HomeFragment() : Fragment(), LeagueListener {
         binding.navRules.setOnClickListener{
             replaceFragment(RulesFragment())
         }
-
-        binding.navHome.setOnClickListener { replaceFragment(LeagueResultsFragment("")) }
     }
 
     private fun setAdapterLeague() {
