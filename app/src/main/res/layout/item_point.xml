@@ -53,7 +53,7 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/source_sans_pro_semibold"
                     android:gravity="center"
-                    android:text="Man United"
+                    tools:text="Man United"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -81,7 +81,7 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/source_sans_pro_semibold"
                     android:gravity="center"
-                    android:text="Chelsea FC"
+                    tools:text="Chelsea FC"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent" />

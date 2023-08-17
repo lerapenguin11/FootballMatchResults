@@ -1,5 +1,7 @@
 package com.example.footballmatchresults.business.models.slide
 
+import com.example.footballmatchresults.business.models.leagueProfileLogo.Data
+
 object Constants {
 
     fun getNewsList() : MutableList<NewsModel> {
@@ -40,5 +42,43 @@ object Constants {
         soonMatchList.add(match3)
 
         return soonMatchList
+    }
+
+    fun getLogo() : MutableList<Data>{
+        val listLogo = mutableListOf<Data>()
+        val logo1 = Data("http://zq.titan007.com/Image/team/images/7/1h6z1xbyqap.png?win007=sell", "http://zq.titan007.com/Image/team/images/7/1h6z1xbyqap.png?win007=sell")
+        listLogo.add(logo1)
+
+        val logo2 = Data("http://zq.titan007.com/Image/team/images/7/1h6z1xbyqap.png?win007=sell", "http://zq.titan007.com/Image/team/images/165724129651.png?win007=sell")
+        listLogo.add(logo2)
+
+        val logo3 = Data("http://zq.titan007.com/Image/team/images/9/1grd5f04ex2k.png?win007=sell", "http://zq.titan007.com/Image/team/images/165724122951.png?win007=sell")
+        listLogo.add(logo3)
+
+        val logo4 = Data("http://zq.titan007.com/Image/team/images/20071271212516190.gif?win007=sell", "http://zq.titan007.com/Image/team/images/165724143142.png?win007=sell")
+        listLogo.add(logo4)
+
+        val logo5 = Data("http://zq.titan007.com/Image/team/images/9/1grd5f04ex2k.png?win007=sell", "http://zq.titan007.com/Image/team/images/165724129651.png?win007=sell")
+        listLogo.add(logo5)
+
+        val logo6 = Data("http://zq.titan007.com/Image/team/images/20130406101859.png?win007=sell", "http://zq.titan007.com/Image/team/images/165724146081.png?win007=sell")
+        listLogo.add(logo6)
+
+        val logo7 = Data("http://zq.titan007.com/Image/team/images/7/1h6z1xbyqap.png?win007=sell", "http://zq.titan007.com/Image/team/images/165724122951.png?win007=sell")
+        listLogo.add(logo7)
+
+        val logo8 = Data("http://zq.titan007.com/Image/team/images/7/1h6z1xbyqap.png?win007=sell", "http://zq.titan007.com/Image/team/images/165724129651.png?win007=sell")
+        listLogo.add(logo8)
+
+        val logo9 = Data("http://zq.titan007.com/Image/team/images/20071271212516190.gif?win007=sell", "http://zq.titan007.com/Image/team/images/7/1h6z1xbyqap.png?win007=sell")
+        listLogo.add(logo9)
+
+        val logo10 = Data("http://zq.titan007.com/Image/team/images/7/1h6z1xbyqap.png?win007=sell", "http://zq.titan007.com/Image/team/images/20071271212516190.gif?win007=sell")
+        listLogo.add(logo10)
+
+        val logo11 = Data("http://zq.titan007.com/Image/team/images/7/1h6z1xbyqap.png?win007=sell", "http://zq.titan007.com/Image/team/images/20071271212516190.gif?win007=sell")
+        listLogo.add(logo11)
+
+        return listLogo
     }
 }

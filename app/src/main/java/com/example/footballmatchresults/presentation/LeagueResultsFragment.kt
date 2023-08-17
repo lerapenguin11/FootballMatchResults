@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.example.footballmatchresults.business.db.DatabaseHelper
 import com.example.footballmatchresults.business.db.Points
 import com.example.footballmatchresults.business.models.slide.SoonMatchModel
@@ -52,8 +53,7 @@ class LeagueResultsFragment(val id : String) : Fragment(),
     private val adapter = LeagueProfileAdapter(this)
     private val adapterSlider = SoonMatchAdapter(this)
     private lateinit var viewPager: ViewPager2
-    private var homeName = ""
-    private var awayName = ""
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -138,7 +138,7 @@ class LeagueResultsFragment(val id : String) : Fragment(),
         })
     }
 
-    override fun leagueInfo(data: Data) {
+    override fun leagueInfo(data: Data, logo : com.example.footballmatchresults.business.models.leagueProfileLogo.Data) {
         val dialog = Dialog(requireContext(), android.R.style.Theme_DeviceDefault_Light_NoActionBar_Fullscreen)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.full_screen_dialog_league_result)
@@ -163,9 +163,19 @@ class LeagueResultsFragment(val id : String) : Fragment(),
         val location : TextView = dialog.findViewById(R.id.tv_location)
         val weather : TextView = dialog.findViewById(R.id.tv_weather)
         val temperature : TextView = dialog.findViewById(R.id.tv_temperature)
+        val logoHome : ImageView = dialog.findViewById(R.id.ic_flag_home)
+        val logoAway : ImageView = dialog.findViewById(R.id.ic_flag_away)
 
         val btBack : ImageView = dialog.findViewById(R.id.bt_arrow_back)
         val info : ImageView = dialog.findViewById(R.id.bt_info_dialog)
+
+        Glide.with(requireContext())
+            .load(logo.logoHome)
+            .into(logoHome)
+
+        Glide.with(requireContext())
+            .load(logo.logoAway)
+            .into(logoAway)
 
         resultHome.text = data.homeScore.toString()
         resultAway.text = data.awayScore.toString()
@@ -185,6 +195,7 @@ class LeagueResultsFragment(val id : String) : Fragment(),
         location.text = data.location
         weather.text = data.weather
         temperature.text = data.temperature
+
         dialog.show()
 
         btBack.setOnClickListener { dialog.cancel() }
@@ -207,7 +218,6 @@ class LeagueResultsFragment(val id : String) : Fragment(),
         val enterHomeResult : TextView = dialog.findViewById(R.id.et_enter_point_home)
         val enterAwayResult : TextView = dialog.findViewById(R.id.et_enter_point_away)
         val save : ConstraintLayout = dialog.findViewById(R.id.bt_save)
-        val history : ConstraintLayout = dialog.findViewById(R.id.bt_history)
 
         dialog.show()
 
@@ -215,17 +225,15 @@ class LeagueResultsFragment(val id : String) : Fragment(),
         nameHome.text = list.nameHome
         nameAway.text = list.nameAway
 
-
-        homeName = list.nameHome
-        awayName = list.nameAway
-
-
         save.setOnClickListener {
             val pointHome = enterHomeResult.text.toString()
             val pointAway = enterAwayResult.text.toString()
+            val homeName = list.nameHome
+            val awayName = list.nameAway
 
             if(pointHome.isNotEmpty() && pointAway.isNotEmpty()){
-                val point = Points(pointHome = pointHome, pointAway = pointAway, nameAway = awayName, nameHome = homeName)
+
+                val point = Points(pointHome = pointHome, pointAway = pointAway,nameHome = homeName, nameAway = awayName )
                 lifecycleScope.launch(Dispatchers.IO) {
                     // запросы в базу, к примеру:
                     DatabaseHelper.insert(point)
@@ -233,10 +241,6 @@ class LeagueResultsFragment(val id : String) : Fragment(),
                     dialog.cancel()
                 }
             }
-        }
-
-        history.setOnClickListener {
-            replaceFragmentMainActivity(IntuitionHistoryFragment())
         }
     }
 }

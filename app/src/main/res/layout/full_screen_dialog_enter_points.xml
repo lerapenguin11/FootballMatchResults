@@ -91,7 +91,7 @@
             android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_date_enter_point"
-            app:srcCompat="@drawable/manchester" />
+            app:srcCompat="@drawable/logo_away" />
 
         <EditText
             android:id="@+id/et_enter_point_home"
@@ -168,36 +168,13 @@
             app:layout_constraintTop_toBottomOf="@+id/ic_flag_away_enter_point" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/bt_history"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/et_enter_point_home"
-            app:layout_constraintStart_toStartOf="@+id/ic_flag_home_enter_point"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name_home_point_enter">
-
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Go History"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:fontFamily="@font/source_sans_pro_semibold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/bt_save"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:background="@drawable/bg_bt_enter_point"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/ic_flag_away_enter_point"
-            app:layout_constraintStart_toStartOf="@+id/et_enter_point_away"
+            app:layout_constraintStart_toStartOf="@+id/ic_flag_home_enter_point"
             app:layout_constraintTop_toBottomOf="@+id/tv_name_away_point_enter">
 
             <TextView
@@ -207,7 +184,7 @@
                 android:fontFamily="@font/source_sans_pro_semibold"
                 android:text="Save"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

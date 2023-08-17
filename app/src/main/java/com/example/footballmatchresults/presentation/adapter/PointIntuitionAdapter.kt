@@ -28,6 +28,8 @@ class PointIntuitionAdapter() : RecyclerView.Adapter<PointIntuitionAdapter.Point
 
         holder.resultHome.text = resultPoint.pointHome
         holder.resultAway.text = resultPoint.pointAway
+        holder.nameHome.text = resultPoint.nameHome
+        holder.nameAway.text = resultPoint.nameAway
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -40,5 +42,7 @@ class PointIntuitionAdapter() : RecyclerView.Adapter<PointIntuitionAdapter.Point
     class PointIntuitionViewHolder(view : View) : RecyclerView.ViewHolder(view) {
         val resultHome : TextView = view.findViewById(R.id.tv_result_home)
         val resultAway : TextView = view.findViewById(R.id.tv_result_away)
+        val nameHome : TextView = view.findViewById(R.id.tv_name_home)
+        val nameAway : TextView = view.findViewById(R.id.tv_name_away)
     }
 }

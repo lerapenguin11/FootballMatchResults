@@ -4,5 +4,5 @@ import com.example.footballmatchresults.business.models.leagueProfile.Data
 
 interface LeagueInformationListener {
 
-    fun leagueInfo(data : Data)
+    fun leagueInfo(data : Data, logo : com.example.footballmatchresults.business.models.leagueProfileLogo.Data)
 }

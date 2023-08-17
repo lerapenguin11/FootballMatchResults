@@ -21,6 +21,7 @@ interface FootballApi {
         @Query("leagueId") leagueId : String
     ) : Observable<LeagueProfileModel>
 
+
     companion object {
 
         var retrofitService: FootballApi? = null
