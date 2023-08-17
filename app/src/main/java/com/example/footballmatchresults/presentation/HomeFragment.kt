@@ -27,7 +27,7 @@ import com.example.footballmatchresults.databinding.FragmentHomeBinding
 import com.example.footballmatchresults.presentation.adapter.LeagueAdapter
 import com.example.footballmatchresults.presentation.adapter.slider.NewsSliderAdapter
 import com.example.footballmatchresults.presentation.adapter.listener.LeagueListener
-import com.example.footballmatchresults.utilits.replaceFragment
+import com.example.footballmatchresults.utilits.replaceFragmentMainActivity
 import com.example.footballmatchresults.viewModel.HomeViewModel
 import com.example.footballmatchresults.viewModel.HomeViewModelFactory
 import com.example.footballmatchresults.viewModel.LeagueResultViewModelFactory
@@ -104,7 +104,7 @@ class HomeFragment() : Fragment(), LeagueListener {
         }
 
         binding.navRules.setOnClickListener{
-            replaceFragment(RulesFragment())
+            replaceFragmentMainActivity(RulesFragment())
         }
     }
 
@@ -138,7 +138,7 @@ class HomeFragment() : Fragment(), LeagueListener {
     }
 
     override fun leagueList(list: Data) {
-        replaceFragment(LeagueResultsFragment(list.leagueId))
+        replaceFragmentMainActivity(LeagueResultsFragment(list.leagueId))
     }
 
     @SuppressLint("CutPasteId")

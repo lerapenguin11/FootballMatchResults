@@ -2,8 +2,6 @@ package com.example.footballmatchresults.presentation
 
 import android.annotation.SuppressLint
 import android.app.Dialog
-import android.content.Context
-import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -31,23 +29,16 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
-import com.example.footballmatchresults.PREFS_KEY
 import com.example.footballmatchresults.business.db.DatabaseHelper
 import com.example.footballmatchresults.business.db.Points
-import com.example.footballmatchresults.business.models.slide.PointModel
 import com.example.footballmatchresults.business.models.slide.SoonMatchModel
 import com.example.footballmatchresults.databinding.FragmentLeagueResultsBinding
-import com.example.footballmatchresults.presentation.adapter.PointIntuitionAdapter
 import com.example.footballmatchresults.presentation.adapter.listener.SoonMatchListener
 import com.example.footballmatchresults.presentation.adapter.slider.SoonMatchAdapter
-import com.example.footballmatchresults.utilits.replaceFragment
-import com.example.footballmatchresults.viewModel.PointViewModel
-import com.google.gson.Gson
+import com.example.footballmatchresults.utilits.replaceFragmentMainActivity
 import kotlin.math.abs
-import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.reflect.Type
 
 class LeagueResultsFragment(val id : String) : Fragment(),
     LeagueInformationListener,
@@ -88,7 +79,7 @@ class LeagueResultsFragment(val id : String) : Fragment(),
             Toast.makeText(context, R.string.league_result_info, Toast.LENGTH_LONG).show()
         }
 
-        binding.btArrow.setOnClickListener { replaceFragment(HomeFragment()) }
+        binding.btArrow.setOnClickListener { replaceFragmentMainActivity(HomeFragment()) }
     }
 
     @SuppressLint("UseRequireInsteadOfGet")
@@ -238,14 +229,14 @@ class LeagueResultsFragment(val id : String) : Fragment(),
                 lifecycleScope.launch(Dispatchers.IO) {
                     // запросы в базу, к примеру:
                     DatabaseHelper.insert(point)
-                    replaceFragment(IntuitionHistoryFragment())
+                    replaceFragmentMainActivity(IntuitionHistoryFragment())
                     dialog.cancel()
                 }
             }
         }
 
         history.setOnClickListener {
-            replaceFragment(IntuitionHistoryFragment())
+            replaceFragmentMainActivity(IntuitionHistoryFragment())
         }
     }
 }

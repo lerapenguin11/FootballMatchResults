@@ -7,9 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.footballmatchresults.R
-import com.example.footballmatchresults.databinding.FragmentHomeBinding
 import com.example.footballmatchresults.databinding.FragmentRulesBinding
-import com.example.footballmatchresults.utilits.replaceFragment
+import com.example.footballmatchresults.utilits.replaceFragmentMainActivity
 
 class RulesFragment : Fragment() {
     private var _binding : FragmentRulesBinding? = null
@@ -32,7 +31,7 @@ class RulesFragment : Fragment() {
 
     private fun onClick() {
         binding.btArrow.setOnClickListener {
-            replaceFragment(HomeFragment())
+            replaceFragmentMainActivity(HomeFragment())
         }
 
         binding.btInfoMatch.setOnClickListener {

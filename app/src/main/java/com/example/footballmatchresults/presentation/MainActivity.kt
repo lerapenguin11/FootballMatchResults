@@ -9,11 +9,10 @@ import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
-import com.example.footballmatchresults.APP_ACTIVITY
+import com.example.footballmatchresults.APP_MAIN_ACTIVITY
 import com.example.footballmatchresults.R
-import com.example.footballmatchresults.business.db.DatabaseHelper
 import com.example.footballmatchresults.databinding.ActivityMainBinding
-import com.example.footballmatchresults.utilits.replaceFragment
+import com.example.footballmatchresults.utilits.replaceFragmentMainActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -23,13 +22,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        APP_ACTIVITY = this
+        APP_MAIN_ACTIVITY = this
         setStatusBarGradiant(this)
     }
 
     override fun onStart() {
         super.onStart()
-        replaceFragment(HomeFragment())
+        replaceFragmentMainActivity(HomeFragment())
     }
 
     @SuppressLint("ObsoleteSdkInt")

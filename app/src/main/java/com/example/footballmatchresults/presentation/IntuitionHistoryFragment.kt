@@ -13,11 +13,10 @@ import com.example.footballmatchresults.R
 import com.example.footballmatchresults.business.api.FootballApi.Companion.retrofitService
 import com.example.footballmatchresults.business.db.DatabaseHelper
 import com.example.footballmatchresults.business.db.PointsDao
-import com.example.footballmatchresults.business.models.slide.PointModel
 import com.example.footballmatchresults.business.repos.LeagueProfileRepository
 import com.example.footballmatchresults.databinding.FragmentIntuitionBinding
 import com.example.footballmatchresults.presentation.adapter.PointIntuitionAdapter
-import com.example.footballmatchresults.utilits.replaceFragment
+import com.example.footballmatchresults.utilits.replaceFragmentMainActivity
 import com.example.footballmatchresults.viewModel.LeagueResultViewModelFactory
 import com.example.footballmatchresults.viewModel.LeagueResultsViewModel
 import kotlinx.coroutines.Dispatchers
@@ -57,7 +56,7 @@ class IntuitionHistoryFragment() : Fragment() {
 
     private fun onClick() {
         binding.btArrow.setOnClickListener {
-            replaceFragment(HomeFragment())
+            replaceFragmentMainActivity(HomeFragment())
         }
 
         binding.btInfoMatch.setOnClickListener {
